@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Logos Link — Getting Started</title>
+    <meta
+      name="description"
+      content="Try Logos Link: an onboarding walkthrough of the toolbar, sidebar, page detection, omnibox, and context menu."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blue: #1e6afe;
+        --blue-hover: #1558d9;
+        --blue-light: #e9f5ff;
+        --deep: #030b60;
+        --deep-2: #0a1470;
+        --white: #ffffff;
+        --ink: #111827;
+        --ink-2: #1f2937;
+        --muted: #4b5563;
+        --soft: #f7f9fc;
+        --line: #e5e7eb;
+        --accent: #ffd166;
+
+        --font-heading: "Lexend", "Inter", system-ui, sans-serif;
+        --font-body: "Source Sans 3", "Source Sans Pro", "Inter", system-ui,
+          sans-serif;
+
+        --radius: 14px;
+        --radius-sm: 8px;
+        --shadow: 0 10px 40px rgba(3, 11, 96, 0.08);
+        --shadow-lg: 0 24px 60px rgba(3, 11, 96, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--ink);
+        background: var(--white);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.55;
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(140%) blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .site-header .bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--deep);
+      }
+      .brand svg {
+        flex-shrink: 0;
+      }
+      .brand-name {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+      }
+      .brand-name .sub {
+        color: var(--muted);
+        font-weight: 400;
+        margin-left: 6px;
+      }
+      .site-header .links {
+        display: inline-flex;
+        align-items: center;
+        gap: 22px;
+        font-family: var(--font-heading);
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .site-header .links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .site-header .links a:hover {
+        color: var(--blue);
+      }
+
+      /* Hero */
+      .hero {
+        background: linear-gradient(135deg, var(--deep) 0%, var(--deep-2) 60%, #1a2a9c 100%);
+        color: var(--white);
+        padding: 72px 24px 88px;
+      }
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #8db5ff;
+        margin: 0 0 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+      .hero h1 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: clamp(40px, 5.2vw, 68px);
+        line-height: 1.04;
+        letter-spacing: -0.02em;
+        margin: 0 0 20px;
+        color: var(--white);
+        max-width: 900px;
+        text-wrap: balance;
+      }
+      .hero p.lede {
+        font-size: clamp(18px, 1.4vw, 22px);
+        color: #cfdcff;
+        max-width: 780px;
+        margin: 0 0 36px;
+        line-height: 1.5;
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 15px;
+        padding: 14px 22px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      }
+      .btn-primary {
+        background: var(--white);
+        color: var(--deep);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      }
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+      .hero-meta {
+        margin-top: 32px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        font-size: 14px;
+        color: #9eb3e5;
+      }
+      .hero-meta strong {
+        color: var(--white);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+      /* TOC */
+      .toc {
+        background: var(--soft);
+        border-bottom: 1px solid var(--line);
+        padding: 20px 24px;
+      }
+      .toc-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        align-items: center;
+      }
+      .toc .label {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-right: 6px;
+      }
+      .toc a {
+        font-family: var(--font-heading);
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--deep);
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 20px;
+        transition: background 0.15s, color 0.15s;
+      }
+      .toc a:hover {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+
+      /* Sections */
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px 24px 80px;
+      }
+      section.feature {
+        padding: 56px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      section.feature:last-of-type {
+        border-bottom: none;
+      }
+      section.feature h2 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: clamp(30px, 3.4vw, 44px);
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+        margin: 0 0 14px;
+        color: var(--deep);
+      }
+      section.feature > .lede {
+        font-size: clamp(17px, 1.2vw, 19px);
+        color: var(--muted);
+        max-width: 760px;
+        margin: 0 0 32px;
+      }
+      .subsection {
+        margin-top: 36px;
+      }
+      .subsection h3 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: -0.005em;
+        margin: 0 0 14px;
+        color: var(--deep);
+      }
+
+      /* Numbered steps */
+      ol.steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+        counter-reset: step;
+      }
+      ol.steps li {
+        counter-increment: step;
+        position: relative;
+        padding: 18px 22px 18px 64px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        font-size: 16px;
+        color: var(--ink-2);
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      ol.steps li:hover {
+        border-color: rgba(30, 106, 254, 0.4);
+        box-shadow: var(--shadow);
+      }
+      ol.steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--blue-light);
+        color: var(--blue);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      ol.steps li strong {
+        color: var(--deep);
+      }
+      ol.steps li code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.92em;
+        background: var(--soft);
+        padding: 1px 6px;
+        border-radius: 4px;
+        color: var(--deep);
+      }
+      ol.steps li a {
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      ol.steps li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Callouts */
+      .callout {
+        background: linear-gradient(135deg, var(--blue-light) 0%, #f3f8ff 100%);
+        border-left: 4px solid var(--blue);
+        padding: 18px 24px;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        margin: 28px 0;
+        font-size: 15px;
+        color: var(--deep);
+      }
+      .callout p {
+        margin: 0;
+      }
+      .callout.warn {
+        background: #fff7e6;
+        border-left-color: var(--accent);
+        color: #7a4a00;
+      }
+
+      /* Aside note */
+      aside.note {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 10px 14px;
+        border-left: 3px solid var(--line);
+        margin: 16px 0 0;
+        font-style: italic;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--soft);
+        border-top: 1px solid var(--line);
+        padding: 48px 24px 56px;
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: 28px;
+      }
+      footer h3 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 22px;
+        margin: 0 0 10px;
+        color: var(--deep);
+      }
+      footer p {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      footer a {
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-meta {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* Feature tag (e.g. "Primary") */
+      .tag {
+        display: inline-block;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 9px;
+        border-radius: 20px;
+        background: var(--blue-light);
+        color: var(--blue);
+        margin-left: 10px;
+        vertical-align: 3px;
+      }
+      .tag.soon {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      @media (max-width: 640px) {
+        .site-header .links {
+          gap: 14px;
+        }
+        .hero {
+          padding: 56px 20px 64px;
+        }
+        .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="bar">
+        <a class="brand" href="/logos-link-deck/">
+          <svg width="28" height="28" viewBox="0 0 58 58" fill="none" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M8.018 0H49.982C54.41 0 58 3.59 58 8.018V49.982C58 54.41 54.41 58 49.982 58H8.018c-1.143 0-2.23-.24-3.213-.672-.255-.112-.305-.443-.109-.639L17.504 43.865a.547.547 0 0 1 .444-.107c3.095 2.336 6.946 3.721 11.122 3.721 10.207 0 18.481-8.274 18.481-18.481S39.278 10.517 29.07 10.517 10.59 18.79 10.59 28.998c0 3.978 1.257 7.662 3.396 10.678.093.176.073.397-.061.554L1.167 52.955a.343.343 0 0 1-.645-.126A8.08 8.08 0 0 1 0 49.981V8.018C0 3.59 3.59 0 8.018 0Zm34.833 28.967c0 7.743-6.172 14.02-13.786 14.02s-13.786-6.277-13.786-14.02 6.172-14.02 13.786-14.02 13.786 6.277 13.786 14.02ZM22.785 24.835a.413.413 0 0 0-.412.413v3.474c0 .228.184.412.412.412h4.13v8.093c0 .228.185.412.413.412h3.474a.413.413 0 0 0 .412-.412v-8.093h4.14a.413.413 0 0 0 .413-.412v-3.474a.413.413 0 0 0-.413-.413h-4.14v-4.14a.413.413 0 0 0-.412-.412h-3.474a.413.413 0 0 0-.413.413v4.14h-4.13Z"
+              fill="#1e6afe"
+            />
+          </svg>
+          <span class="brand-name">Logos Link <span class="sub">· Getting Started</span></span>
+        </a>
+        <nav class="links">
+          <a href="/logos-link-deck/">Strategy deck →</a>
+          <a
+            href="https://chromewebstore.google.com/detail/logos-link/ejkbgobbbllhmcjjldijpcdbdebpoeda"
+            >Install</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">For the Logos / Faithlife team</p>
+        <h1>Try Logos Link, then tell me what you think.</h1>
+        <p class="lede">
+          Logos Link (v0.7.0) is now available on the Chrome Web Store on an
+          unlisted personal page. If you’re willing, install it, try it out on
+          a few websites, and share your feedback. This walkthrough covers the
+          core feature surfaces and a few things to try for each.
+        </p>
+        <div class="cta-row">
+          <a
+            class="btn btn-primary"
+            href="https://chromewebstore.google.com/detail/logos-link/ejkbgobbbllhmcjjldijpcdbdebpoeda"
+            >Install from Chrome Web Store →</a
+          >
+          <a class="btn btn-ghost" href="/logos-link-deck/"
+            >Read the strategy deck</a
+          >
+        </div>
+        <div class="hero-meta">
+          <span><strong>Version</strong> 0.7.0</span>
+          <span><strong>Visibility</strong> Unlisted</span>
+          <span><strong>From</strong> Phil Gons, CPO</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="toc">
+      <div class="toc-inner">
+        <span class="label">Jump to</span>
+        <a href="#toolbar">Toolbar</a>
+        <a href="#sidebar">Sidebar</a>
+        <a href="#page-content">Page content</a>
+        <a href="#omnibox">Omnibox</a>
+        <a href="#context-menu">Context menu</a>
+        <a href="#feedback">Feedback</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="feature" id="toolbar">
+        <p class="eyebrow" style="color: var(--blue)">Surface · 01</p>
+        <h2>Toolbar</h2>
+        <p class="lede">
+          The quickest entry points: open the sidebar, pin for fast toggle,
+          silence the extension on a given site, or jump to Options.
+        </p>
+        <ol class="steps">
+          <li>
+            Click the <strong>Logos Link</strong> icon in the toolbar to open
+            the sidebar.
+          </li>
+          <li>
+            <strong>Pin the extension</strong> (click the puzzle-piece icon →
+            pin icon next to Logos Link) so the toolbar button is always
+            visible and you can toggle it on or off with one click.
+          </li>
+          <li>
+            <strong>Right-click the icon</strong> to disable Logos Link on the
+            current website. Useful when a site’s own link-preview (e.g.
+            Wikipedia) conflicts with ours.
+          </li>
+          <li>
+            Choose <strong>Options</strong> from the right-click menu to
+            customize default behavior — detection, tooltips, intercepts,
+            citation formats, and Logos product links.
+          </li>
+        </ol>
+      </section>
+
+      <section class="feature" id="sidebar">
+        <p class="eyebrow" style="color: var(--blue)">Surface · 02</p>
+        <h2>Sidebar</h2>
+        <p class="lede">
+          The browsing interface for everything Logos Link detected on the
+          current page. Three tabs, each with filtering, sorting, copy-out,
+          and deep-link actions.
+        </p>
+        <ol class="steps">
+          <li>
+            The sidebar is organized around three reference groups:
+            <strong>Verses</strong>, <strong>Topics</strong>, and
+            <strong>Books</strong>.
+          </li>
+          <li>
+            Each tab has a <strong>filter box</strong> to quickly find an item
+            detected on the current page.
+          </li>
+          <li>
+            The <strong>Verses tab</strong> also lets you type in any Bible
+            reference and instantly get the text — e.g.
+            <code>John 3:16</code> or <code>Rom 8:28–30</code>.
+            <aside class="note">
+              May expand this to Topics and Books, too — worth it? Let me know.
+            </aside>
+          </li>
+          <li>
+            Each list matches <strong>page order</strong> by default. You can
+            switch to <strong>canonical</strong> order for Verses, or
+            <strong>alphabetical</strong> for Topics and Books.
+          </li>
+          <li>
+            Navigate through the list with <strong>up/down arrow</strong>
+            buttons in the status bar — the page scrolls to the matching
+            location as you step through.
+          </li>
+          <li>
+            Click the <strong>“scroll to on page”</strong> button on any card
+            to jump the page to that item’s location.
+          </li>
+          <li>
+            <strong>Copy out</strong> any list in various formats — plain
+            text, Markdown, formatted citations. Defaults are configurable in
+            Settings and exposed per-tab via the Copy dropdown.
+          </li>
+          <li>
+            <strong>Jump into Logos</strong> from any item: open in your
+            Bible, open in Factbook, or run a search.
+          </li>
+          <li>
+            Persistent links to <strong>open the web app or desktop app</strong>
+            live at the bottom of the sidebar.
+          </li>
+        </ol>
+      </section>
+
+      <section class="feature" id="page-content">
+        <p class="eyebrow" style="color: var(--blue)">Surface · 03</p>
+        <h2>Page content</h2>
+        <p class="lede">
+          The core of the product: Logos Link silently detects biblical
+          content on the pages you read. Three specific contexts to try.
+        </p>
+
+        <div class="subsection">
+          <h3>Web articles</h3>
+          <ol class="steps">
+            <li>
+              Go to a page like
+              <a
+                href="https://www.desiringgod.org/articles/the-majesty-of-god-in-deuteronomy-32"
+                target="_blank"
+                rel="noopener"
+                >this Desiring God article</a
+              >
+              — dense in Bible references, theology terms, and biblical
+              entities.
+            </li>
+            <li>
+              <strong>Hover</strong> over an underlined Bible reference,
+              topic, Greek/Hebrew word, or book to see a preview tooltip.
+              <strong>Click</strong> the link to open the sidebar to that
+              item: the right tab, scrolled to the right card.
+            </li>
+            <li>
+              <strong>Click a link in the tooltip</strong> to launch Logos:
+              open a Bible, open Factbook, or run a search.
+            </li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3>Google Search</h3>
+          <ol class="steps">
+            <li>
+              Run a Google search for <code>John 3:16</code>, then click the
+              Bible Gateway result. Logos Link intercepts the click and
+              reroutes it to <code>app.logos.com</code>, so the reference
+              opens in the Logos web app instead of Bible Gateway.
+              <aside class="note">
+                Toggle this off any time in <strong>Options → Intercepts</strong>.
+              </aside>
+            </li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3>Book PDPs</h3>
+          <ol class="steps">
+            <li>
+              Visit any Amazon book PDP — or a publisher’s book page — and
+              look for the <strong>toast in the bottom-right corner</strong>
+              that searches for the book on Logos.com.
+              <aside class="note">
+                Known wording issue: the toast doesn’t yet know in advance
+                whether we have the book, so the copy is a little optimistic.
+                On my list to tune.
+              </aside>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="feature" id="omnibox">
+        <p class="eyebrow" style="color: var(--blue)">
+          Surface · 04 <span class="tag soon">Rough edges</span>
+        </p>
+        <h2>Omnibox</h2>
+        <p class="lede">
+          A keyword shortcut in Chrome’s address bar for fast lookups without
+          opening any page.
+        </p>
+        <ol class="steps">
+          <li>
+            Type <code>logos</code> into the Chrome address bar, press
+            <kbd>Tab</kbd> or <kbd>Space</kbd>, then type either:
+            <ul style="margin: 10px 0 0 20px; padding: 0">
+              <li>
+                A search term (e.g. <code>Trinity</code>) — runs a Logos
+                search.
+              </li>
+              <li>
+                A Bible reference (e.g. <code>John 3:16</code>) — opens that
+                passage in the Logos web app.
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <div class="callout warn">
+          <p>
+            I haven’t spent much time here yet — pretty basic and
+            needs polish. Ideas welcome.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature" id="context-menu">
+        <p class="eyebrow" style="color: var(--blue)">
+          Surface · 05 <span class="tag soon">Rough edges</span>
+        </p>
+        <h2>Context menu</h2>
+        <p class="lede">
+          Right-click actions for selected text or links, routed through a
+          Logos Link submenu.
+        </p>
+        <ol class="steps">
+          <li>
+            Right-click on page content — selected text or a link — and look
+            for the <strong>Logos Link</strong> menu item to take actions on
+            the selected item or text.
+          </li>
+        </ol>
+        <div class="callout warn">
+          <p>
+            Also early — needs further testing and polish. Try it on a few
+            kinds of selections and tell me what feels missing.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature" id="feedback">
+        <p class="eyebrow" style="color: var(--blue)">Before you go</p>
+        <h2>What I’m looking for</h2>
+        <p class="lede">
+          There are a number of known bugs and polish issues I haven’t gotten
+          to yet. Feel free to report anything, but focus most of your
+          feedback on the core strategy and feature set.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Where to send feedback.</strong> Slack DM, email, or a
+            one-line note on the strategy deck — any format is fine. If it’s
+            a detection bug, the page URL plus the reference / term / book
+            that was missed is plenty.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h3>Start with the strategy, then try it.</h3>
+          <p>
+            The <a href="/logos-link-deck/">strategy deck</a> explains the
+            rationale, success metrics, and the three strategic questions I
+            need leadership alignment on. This page is the companion
+            onboarding — what to click, where to look, and how to form your
+            own take.
+          </p>
+        </div>
+        <div class="footer-meta">
+          Logos Link v0.7.0 · Published unlisted on the Chrome Web Store ·
+          Built by Phil Gons, CPO · Logos / Faithlife
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
